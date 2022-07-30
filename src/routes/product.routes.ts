@@ -11,5 +11,6 @@ const productService = new ProductService(productModel);
 const productController = new ProductController(productService);
 
 productRoutes.post('/', productController.create);
+productRoutes.get('/', productController.findAll);
 
 export default productRoutes;
