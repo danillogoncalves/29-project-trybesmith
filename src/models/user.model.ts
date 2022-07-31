@@ -17,4 +17,11 @@ export default class UserModel {
     );
     return { username, classe, level };
   }
+
+  public async findUsername(username: string): Promise<UserPrivate | undefined> {
+    const QUERY = 'SELECT * FROM Trybesmith.Users WHERE username = ?';
+    const [result] = await this.connection.query(QUERY, [username]);
+    const [user] = result as UserPrivate[];
+    return user;
+  }
 }
