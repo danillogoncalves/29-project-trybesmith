@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { RequestToken } from '../interfaces/token.interface';
 import OrderService from '../services/order.service';
 import orderValidation from '../validations/order.validations';
 
@@ -14,10 +15,10 @@ export default class OrderController {
     res.status(200).json(result);
   }
 
-  public async create(req: any, res: Response) {
+  public async create(req: Request, res: Response) {
     const validate = orderValidation(req.body);
     const { productsIds } = validate;
-    const { user } = req;
+    const { user } = req as RequestToken;
     const result = await this.service.create(productsIds, user);
     res.status(201).json(result);
   }
