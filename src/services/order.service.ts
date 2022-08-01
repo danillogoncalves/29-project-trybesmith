@@ -9,4 +9,8 @@ export default class OrderService {
   public async findAll(): Promise<Order[]> {
     return this.model.findAll();
   }
+
+  public async create(order: number[], username: string): Promise<Order> {
+    return this.model.create(order, username);
+  }
 }
