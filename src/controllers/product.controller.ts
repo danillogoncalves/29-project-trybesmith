@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import ProductService from '../services/product.service';
+import productValidation from '../validations/product.validations';
 
 export default class ProductController {
   constructor(private service: ProductService) {
@@ -9,7 +10,8 @@ export default class ProductController {
   }
 
   public async create(req: Request, res: Response): Promise<void> {
-    const result = await this.service.create(req.body);
+    const validate = productValidation(req.body);
+    const result = await this.service.create(validate);
     res.status(201).json(result);
   }
 

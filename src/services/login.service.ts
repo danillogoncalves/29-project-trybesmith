@@ -8,7 +8,6 @@ export default class LoginService {
   }
 
   public async login(login: Login): Promise<string> {
-    console.log('Service');
     const { username, password } = login;
     const result = await this.model.findUsername(username);
     if (!result || result?.password !== password) {

@@ -1,8 +1,8 @@
 import express from 'express';
+import 'express-async-errors';
 import orderRoutes from './routes/order.routes';
 import productRoutes from './routes/product.routes';
 import userRoutes from './routes/user.routes';
-import 'express-async-errors';
 import loginRoutes from './routes/login.routes';
 import error from './middlewares/erro.middleware';
 

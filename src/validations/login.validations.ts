@@ -9,6 +9,7 @@ const schema = Joi.object({
 export default function loginValidation(login: Login): Login {
   const { error, value } = schema.validate(login);
   if (error) {
+    error.stack = `${error.details[0].type}`;
     throw error;
   }
   return value;

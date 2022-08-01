@@ -2,14 +2,14 @@ import { NextFunction, Request, Response } from 'express';
 
 export default function error(
   err: Error,
-  req: Request, 
+  _req: Request, 
   res: Response,
   _next: NextFunction,
 ) {
-  const { name, message } = err as Error;
+  const { name, message, stack } = err;
   switch (name) {
     case 'ValidationError':
-      res.status(400).json({ message });
+      res.status(stack === 'any.required' ? 400 : 422).json({ message });
       break;
     case 'LoginError':
       res.status(401).json({ message });
